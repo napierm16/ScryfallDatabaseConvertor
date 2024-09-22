@@ -3,24 +3,23 @@ import csv
 import sys
 
 #open the input json file
-with open(sys.argv[1]) as f:
+with open(sys.argv[1],encoding='utf8') as f:
 	data = json.load(f)
 
 #create the output.csv file
-with open('output.csv', 'w', newline='') as csvfile:
+with open('output.csv', 'w', newline='',encoding='utf8') as csvfile:
 
-	thewriter = csv.DictWriter(csvfile,fieldnames=headers,extrasaction='ignore')
+	headers = ["id","lang","foil","nonfoil","promo","set","rarity","mana_cost", "story_spotlight", "uri", "oracle_text", "variation", "full_art", "legalities", "set_type", "digital", "keywords", "object", "scryfall_set_uri", "border_color", "highres_image", "oversized", "textless", "games", "set_name", "illustration_id", "produced_mana", "frame", "colors", "scryfall_uri", "tcgplayer_id", "prices", "oracle_id", "color_identity", "reprint", "name", "set_id", "artist_ids", "reserved", "mtgo_id", "prints_search_uri", "rulings_uri", "related_uris", "released_at", "type_line", "arena_id", "image_status", "set_uri", "purchase_uris", "card_back_id", "layout", "artist", "multiverse_ids", "cmc", "booster", "collector_number", "image_uris", "finishes", "set_search_uri", "image","power", "cardmarket_id", "mtgo_foil_id", "edhrec_rank", "toughness", "penny_rank", "flavor_text","promo_types", "all_parts","security_stamp",'artist_id', 'card_faces','preview','watermark','frame_effects','loyalty','defense','tcgplayer_etched_id','flavor_name','attraction_lights','color_indicator','variation_of','hand_modifier', 'life_modifier','content_warning','printed_text', 'printed_type_line', 'printed_name']
+
+	thewriter = csv.DictWriter(csvfile,fieldnames=headers)
 
 	#only writes the columns defined here.
-	headers = ["id","name","set","set_name","image","rarity","type_line","oracle_text","flavor_text","cmc","mana_cost",
-	"loyalty","power","toughness","colors","color_identity","watermark","collector_number","border_color","foil","nonfoil","full_art","frame_effect",
-	"oversized","promo","lang","layout"]
 
 	thewriter.writeheader()
 	
 	for card in data:
 		if 'lang' in card:
-			if card['lang'] != 'en':
+			if card['lang'] == 'cfgvnjfdgvjmxvb':
 				continue
 			else:
 				#Only save the 'normal' sized image link to the CSV
